@@ -1,25 +1,19 @@
-Int R;
-Void setup(){
-Serial.begin(9600);
-pinMode(7,OUTPUT);
-Serial.print("Hellow,World");
+int i;
+float v;
+int Analogin = 0;
+void setup() {
+ Serial.begin(9600);
+ pinMode(A0,INPUT);
 }
 
-Void loop(){
+void loop() {
+for(i=0;i<=5;i++)
+{
+  Analogin=0.7*Analogin+0.3*analogRead(A0);
+  }
+  v = Analogin*2.5/4095;
+  Serial.print("v= ");
+  Serial.println(v);
+  delay(500);
 
-while(Serial.available())
-{
-	     R = Serial.read();
-         if(R== ' 0 ')
-{
-	digitalWrite(7,LOW);
-Serial.println("LED,OFF");
-}
-else if(R== ' 1 ')
-{
-	digitalWrite(7,HIGH);
-Serial.println("LED,ON");
-}
-}
-delay(1000);
 }
